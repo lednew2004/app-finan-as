@@ -111,7 +111,7 @@
         const today = new Date().toISOString().split('T')[0];
 
         // Parâmetros
-        let saldoDisponivel = 1500;
+        let saldoDisponivel = 1417;
         let totalHoje = 0;
         let gastos = [];
         const metaDiariaFixa = 60;
@@ -200,7 +200,7 @@
                 .reduce((sum, item) => sum + parseFloat(item.valor), 0);
 
             const totalGastos = gastos.reduce((sum, item) => sum + parseFloat(item.valor), 0);
-            saldoDisponivel = 1500 - totalGastos;
+            saldoDisponivel = 1417 - totalGastos;
 
             const hoje = new Date();
             const diasRestantes = diasParaFimDoMes(hoje);

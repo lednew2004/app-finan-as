@@ -1,7 +1,6 @@
 # node
 node_modules
 .env
-src/env
 dist
 *.log
 

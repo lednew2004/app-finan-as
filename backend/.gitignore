@@ -1,0 +1,16 @@
+# node
+node_modules
+.env
+src/env
+dist
+*.log
+
+# TypeScript
+*.tsbuildinfo
+
+# IDEs
+.vscode/
+.idea/
+
+#DB
+db/app.db

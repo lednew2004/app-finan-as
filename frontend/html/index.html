@@ -100,6 +100,8 @@
         </main>
     </div>
 
+    <!-- ... (cabeçalho e layout permanecem iguais) -->
+
     <script>
         const form = document.getElementById('gasto-form');
         const tabela = document.getElementById('tabela-gastos');
@@ -149,7 +151,7 @@
                 valor: valorNum,
             };
 
-            await fetch("http://localhost:3333/financas", {
+            await fetch("https://api-financas-fosr.onrender.com/financas", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(novoGasto)
@@ -160,7 +162,7 @@
         });
 
         async function loadHistorico() {
-            const resp = await fetch("http://localhost:3333/financas");
+            const resp = await fetch("https://api-financas-fosr.onrender.com/financas");
             const data = await resp.json();
             gastos = data.historico;
             renderGastos();
@@ -174,25 +176,27 @@
                 const tr = document.createElement('tr');
                 tr.className = 'border-b border-gray-800';
                 tr.innerHTML = `
-                    <td class="py-2">${formatarData(item.data)}</td>
-                    <td class="text-[#a83232]">R$ ${parseFloat(item.valor).toFixed(2)}</td>
-                    <td>${item.title}</td>
-                `;
+                <td class="py-2">${formatarData(item.data)}</td>
+                <td class="text-[#a83232]">R$ ${parseFloat(item.valor).toFixed(2)}</td>
+                <td>${item.title}</td>
+            `;
                 tabela.appendChild(tr);
             });
         }
 
         function formatarData(data) {
-            const [date] = data.split(' ');
-            const [a, m, d] = date.split('-');
-            return `${d}/${m}/${a}`;
+            const d = new Date(data);
+            const dia = String(d.getDate()).padStart(2, '0');
+            const mes = String(d.getMonth() + 1).padStart(2, '0');
+            const ano = d.getFullYear();
+            return `${dia}/${mes}/${ano}`;
         }
 
         function calcularSaldosEGraficos() {
             const today = new Date().toISOString().split('T')[0];
 
             totalHoje = gastos
-                .filter(item => item.data.split(' ')[0] === today)
+                .filter(item => new Date(item.data).toISOString().split('T')[0] === today)
                 .reduce((sum, item) => sum + parseFloat(item.valor), 0);
 
             const totalGastos = gastos.reduce((sum, item) => sum + parseFloat(item.valor), 0);
@@ -217,6 +221,7 @@
 
         loadHistorico();
     </script>
+
 </body>
 
 </html>

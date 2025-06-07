@@ -7,7 +7,7 @@
     "node": "20"
   },
   "scripts": {
-    "app": "http-server ./frontend",
+    "app": "http-server src/index.html",
     "dev": "tsx watch src/server.ts",
     "knex": "tsx node_modules/knex/bin/cli.js",
     "build": "tsup src/",

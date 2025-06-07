@@ -9,7 +9,7 @@
   "scripts": {
     "dev": "tsx watch src/server.ts",
     "knex": "tsx node_modules/knex/bin/cli.js",
-    "build": "tsup src/**/*.ts",
+    "build": "tsup src/",
     "start": "node dist/server.js"
   },
   "keywords": [],

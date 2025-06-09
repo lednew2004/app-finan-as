@@ -210,7 +210,7 @@
             saldoEl.textContent = `R$ ${saldoDisponivel.toFixed(2)}`;
             document.getElementById('meta-diaria').textContent = `R$ ${metaDiaria.toFixed(2)}`;
 
-            graficoPizza.data.datasets[0].data = [saldoDisponivel, totalHoje];
+            graficoPizza.data.datasets[0].data = [saldoDisponivel, totalGastos];
             graficoPizza.update();
         }
 
